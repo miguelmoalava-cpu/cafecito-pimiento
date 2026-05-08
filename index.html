@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nuestra Historia</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./styles.css" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+  <div id="loader" class="loader">
+    <div>
+      <span>☕</span>
+      <p>Preparando recuerdos...</p>
+    </div>
+  </div>
+
+  <div id="cursor" class="cursor">☕</div>
+
+  <nav class="nav">
+    <a href="#home" class="logo">☕ Nuestra Historia</a>
+    <div>
+      <a href="#story">Historia</a>
+      <a href="#reminders">Recuerdos</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#games">Juegos</a>
+      <a href="#photo-roll">Fotos</a>
+      <a href="#letters">Cartas</a>
+      <a href="#future">Futuro</a>
+    </div>
+  </nav>
+
+  <section id="home" class="hero">
+    <div class="hero-blob one"></div>
+    <div class="hero-blob two"></div>
+
+    <div class="hero-content reveal">
+      <span class="eyebrow">Desde el 4 de octubre de 2024</span>
+      <h1 id="typing"></h1>
+      <p>Una historia construida entre cafés, caminatas, nervios bonitos y amor real.</p>
+
+      <div class="hero-actions">
+        <a href="#story" class="btn">Entrar a nuestra historia</a>
+        <button class="btn ghost" onclick="toggleMusic()">Música</button>
+      </div>
+
+      <div class="days-card">
+        <strong id="counterDays">0</strong>
+        <span>días juntos</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="counter reveal">
+    <h2>Llevamos juntos</h2>
+    <p id="counterText"></p>
+  </section>
+
+  <section id="story" class="section">
+    <div class="section-title reveal">
+      <span class="eyebrow dark">Nuestra historia</span>
+      <h2>Un viaje hecho de detalles pequeños que terminaron significándolo todo.</h2>
+    </div>
+
+    <div class="story-grid">
+      <article class="card reveal">
+        <h3>🎬 Cómo nos conocimos</h3>
+        <p>En la universidad, en clase de historia del cine. Todo empezó con unos apuntes por un dedo dislocado, y terminó siendo el inicio de algo enorme.</p>
+      </article>
+
+      <article class="card reveal">
+        <h3>☕ Cafés juntos</h3>
+        <p>Nos unió algo simple: café fuerte, sin azúcar. Cada taza fue una excusa perfecta para seguir conversando.</p>
+      </article>
+
+      <article class="card reveal">
+        <h3>🚏 Caminatas a la parada</h3>
+        <p>Las caminatas se volvieron costumbre. Y las costumbres, cuando tienen cariño, empiezan a sentirse como hogar.</p>
+      </article>
+
+      <article class="card reveal">
+        <h3>💋 Primer beso</h3>
+        <p>Un momento nervioso, torpe y hermoso. Como si todo lo que ya sentíamos encontrara por fin una forma de decirse.</p>
+      </article>
+
+      <article class="card reveal">
+        <h3>❤️ Inicio oficial</h3>
+        <p>El 4 de octubre de 2024 nuestra historia encontró su fecha.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="reminders" class="section soft">
+    <div class="section-title reveal">
+      <span class="eyebrow dark">Lo que me recuerda a ti</span>
+      <h2>Hay cosas pequeñas que vuelven a pronunciar tu nombre.</h2>
+    </div>
+
+    <div id="reminderGrid" class="reminder-grid"></div>
+  </section>
+
+  <section id="timeline" class="section">
+    <div class="section-title reveal">
+      <span class="eyebrow dark">Línea de tiempo</span>
+      <h2>Recuerdos con espacio para nuestras fotos reales.</h2>
+    </div>
+
+    <div id="timelineGrid" class="timeline"></div>
+  </section>
+
+  <section id="photo-roll" class="section soft photo-roll-section">
+  <div class="section-title reveal">
+    <span class="eyebrow dark">Nuestro rollo de fotos</span>
+    <h2>Todas esas imágenes donde el tiempo se quedó un poquito con nosotros.</h2>
+  </div>
+
+  <div class="photo-roll-frame reveal">
+    <div id="photoRollTrack" class="photo-roll-track"></div>
+  </div>
+</section>
+
+  <section id="games" class="section soft">
+    <div class="section-title reveal">
+      <span class="eyebrow dark">Juegos</span>
+      <h2>Pequeñas pruebas para jugar con nuestros recuerdos.</h2>
+    </div>
+
+    <div class="games-grid">
+      <article class="card reveal">
+        <h3>🧠 Quiz rápido</h3>
+        <p>¿Dónde empezó nuestra historia?</p>
+        <button onclick="simpleQuiz(true)">Universidad</button>
+        <button onclick="simpleQuiz(false)">Playa</button>
+        <p id="quizResult" class="result"></p>
+      </article>
+
+      <article class="card reveal">
+        <h3>❤️ Verdadero / Falso</h3>
+        <p>Nos gusta el café fuerte sin azúcar.</p>
+        <button onclick="trueFalse(true)">Verdadero</button>
+        <button onclick="trueFalse(false)">Falso</button>
+        <p id="tfResult" class="result"></p>
+      </article>
+
+      <article class="card reveal">
+        <h3>☕ ¿Qué tan bien me conoces?</h3>
+        <div id="knowQuiz"></div>
+      </article>
+
+      <article class="card reveal wide">
+        <div class="memory-head">
+          <h3>🃏 Memoria</h3>
+          <button onclick="resetMemory()">Reiniciar</button>
+        </div>
+        <div id="memoryGrid" class="memory-grid"></div>
+        <p id="memoryResult" class="result"></p>
+      </article>
+    </div>
+  </section>
+
+  <section id="letters" class="section">
+    <div class="section-title reveal">
+      <span class="eyebrow dark">Cartas</span>
+      <h2>Palabras para cuando quieras sentirte recordada con detalle.</h2>
+    </div>
+
+    <div class="letter-actions reveal">
+      <button onclick="showLetter(0)">Carta 1</button>
+      <button onclick="showLetter(1)">Carta 2</button>
+      <button onclick="showLetter(2)">Carta 3</button>
+      <button onclick="showLetter(3)">Carta 4</button>
+      <button onclick="showLetter(4)">Carta 5</button>
+<button onclick="showLetter(5)">Carta 6</button>
+<button onclick="showLetter(6)">Carta 7</button>
+<button onclick="showLetter(7)">Carta 8</button>
+<button onclick="showLetter(8)">Carta 9</button>
+<button onclick="showLetter(9)">Carta 10</button>
+<button onclick="showLetter(10)">Carta 11</button>
+<button onclick="showLetter(11)">Carta 12</button>
+<button onclick="showLetter(12)">Carta 13</button>
+<button onclick="showLetter(13)">Carta 14</button>
+<button onclick="showLetter(14)">Carta 15</button>
+<button onclick="showLetter(15)">Carta 16</button>
+<button onclick="showLetter(16)">Carta 17</button>
+<button onclick="showLetter(17)">Carta 18</button>
+<button onclick="showLetter(18)">Carta 19</button>
+<button onclick="showLetter(19)">Carta 20</button>
+<button onclick="showLetter(20)">Carta 21</button>
+<button onclick="showLetter(21)">Carta 22</button>
+<button onclick="showLetter(22)">Carta 23</button>
+<button onclick="showLetter(23)">Carta 24</button>
+      <button onclick="randomLetter()">Carta para hoy ❤️</button>
+    </div>
+
+    <article id="letterBox" class="letter-box reveal">
+      <h3>Selecciona una carta ❤️</h3>
+      <p>Aquí aparecerá una carta para Dolores.</p>
+    </article>
+
+    <button class="btn" onclick="downloadPDF()">Descargar todas las cartas</button>
+  </section>
+
+  <section id="audio" class="section soft">
+    <div class="section-title reveal">
+      <span class="eyebrow dark">Escúchame</span>
+      <h2>Un lugar para dejarte mi voz cuando quieras sentirme cerca.</h2>
+    </div>
+
+    <article class="audio-card reveal">
+      <div>
+        <span>🎧</span>
+        <h3>Escúchame</h3>
+        <p>Cuando tengas el tiempo mi amor</b>.</p>
+      </div>
+
+      <audio id="voiceAudio">
+        <source src="./mensaje.mp4" type="audio/mpeg">
+      </audio>
+
+      <div class="audio-controls">
+        <button onclick="toggleVoice()">▶</button>
+        <div class="bar"><div id="voiceProgress"></div></div>
+        <small id="voiceTime">0:00</small>
+      </div>
+    </article>
+  </section>
+
+  <section id="future" class="section">
+    <div class="section-title reveal">
+      <span class="eyebrow dark">Nuestro futuro</span>
+      <h2>Lo que imaginamos juntos también merece su lugar aquí.</h2>
+    </div>
+
+    <div class="future-grid">
+      <article class="card reveal">
+        <h3>🏡 Vivir juntos en Cuenca</h3>
+        <p>Una casa tranquila, rutinas nuestras y domingos lentos.</p>
+      </article>
+
+      <article class="card reveal">
+        <h3>🐶 Tener animales</h3>
+        <p>Patitas alrededor y esa alegría desordenada de un hogar vivo.</p>
+      </article>
+
+      <article class="card reveal">
+        <h3>🌿 Un jardín</h3>
+        <p>Plantas creciendo despacio, como todo lo que vale la pena construir juntos.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section soft goal-section">
+  <div class="section-title reveal">
+    <span class="eyebrow dark">Una meta contigo</span>
+    <h2>Más que un lugar, quiero construir una vida que se sienta nuestra.</h2>
+  </div>
+
+  <div class="shared-goal-card reveal">
+    <div class="goal-intro">
+      <span>🏡</span>
+      <div>
+        <h3>Nuestro hogar, a nuestra manera</h3>
+        <p>
+          Una meta que no se trata solo de paredes o ciudad: se trata de despertar juntos,
+          cuidar lo que amamos y hacer de lo cotidiano algo bonito.
+        </p>
+      </div>
+    </div>
+
+    <div class="goal-path">
+      <button class="goal-step" onclick="openDream(0)">
+        <span>01</span>
+        <strong>Un espacio nuestro</strong>
+        <em>Una casa tranquila donde todo tenga un poquito de los dos.</em>
+      </button>
+
+      <button class="goal-step" onclick="openDream(1)">
+        <span>02</span>
+        <strong>Rutinas bonitas</strong>
+        <em>Café, conversaciones largas y domingos sin prisa.</em>
+      </button>
+
+      <button class="goal-step" onclick="openDream(2)">
+        <span>03</span>
+        <strong>Cuidar vida juntos</strong>
+        <em>Plantas, jardín, mascotas y paciencia para construir.</em>
+      </button>
+
+      <button class="goal-step" onclick="openDream(3)">
+        <span>04</span>
+        <strong>Elegirnos cada día</strong>
+        <em>Que el futuro no sea perfecto, pero sí nuestro.</em>
+      </button>
+    </div>
+  </div>
+</section>
+
+  <section class="ending">
+    <div>
+      <p class="ending-line">Si volviera a empezar…</p>
+      <p class="ending-line second">volvería a pedirte esos apuntes.</p>
+      <button class="btn" onclick="scrollToTop()">❤️ Reiniciar historia</button>
+    </div>
+  </section>
+
+  <audio id="music" loop>
+    <source src="./music.mp3" type="audio/mpeg">
+  </audio>
+
+  <div id="modal" class="modal">
+    <div id="modalContent" class="modal-content">
+      <button class="close" onclick="closeModal()">×</button>
+      <div id="modalMedia"></div>
+      <h3 id="modalTitle"></h3>
+      <p id="modalText"></p>
+    </div>
+  </div>
+<script src="./app.js"></script>
+</body>
+</html>
